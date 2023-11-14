@@ -11,6 +11,7 @@ class UpdatePage extends StatefulWidget {
 class _UpdatePageState extends State<UpdatePage> {
   TextEditingController task = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  Database database = Database();
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +62,7 @@ class _UpdatePageState extends State<UpdatePage> {
                   MaterialButton(
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        await Database().updateTask(task.text, widget.id).then(
+                        await database.updateTask(task.text, widget.id).then(
                               (value) =>
                                   ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
